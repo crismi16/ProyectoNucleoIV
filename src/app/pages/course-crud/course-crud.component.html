@@ -1,1 +1,62 @@
-<p>course-crud works!</p>
+<form 
+    [formGroup]="form" 
+    class="d-flex text-center mx-auto align-items-stretch flex-column gap-3" 
+    style="width: 40%;"
+    (ngSubmit)="id=='0' ? addCourse() : updateCourse()"
+>
+    <div>
+        <label for="title" class="form-label">Título del Curso</label>
+        <input id="title" formControlName="title" class="form-control">
+    </div>
+    <div>
+        <label for="description" class="form-label">Descripción</label>
+        <textarea id="description" formControlName="description" class="form-control" rows="3"></textarea>
+    </div> 
+    <div>
+        <label for="price" class="form-label">Precio</label>
+        <input type="number" id="price" formControlName="price" class="form-control">
+    </div> 
+    <div>
+        <label for="subject" class="form-label">Tema</label>
+        <input type="text" id="subject" formControlName="subject" class="form-control">
+    </div>
+    <div>
+        <label for="category" class="form-label">Categoría</label>
+        <input type="text" id="category" formControlName="category" class="form-control">
+    </div>
+    <div>
+        <label for="image" class="form-label">Imagen (URL)</label>
+        <input type="url" id="image" formControlName="image" class="form-control">
+    </div>
+    <div>
+        <label for="level" class="form-label">Nivel</label>
+        <input type="text" id="level" formControlName="level" class="form-control">
+    </div>
+    <div>
+        <label for="duration" class="form-label">Duración (horas)</label>
+        <input type="number" id="duration" formControlName="duration" class="form-control">
+    </div>
+    <div formGroupName="instructor">
+        <label for="instructorName" class="form-label">Nombre del Instructor</label>
+        <input type="text" id="instructorName" formControlName="name" class="form-control">
+        <label for="instructorImage" class="form-label">Imagen del Instructor (URL)</label>
+        <input type="url" id="instructorImage" formControlName="image" class="form-control">
+        <label for="instructorExperience" class="form-label">Experiencia del Instructor</label>
+        <input type="text" id="instructorExperience" formControlName="experience" class="form-control">
+    </div>
+    <div>
+        <label for="enrolledStudents" class="form-label">Estudiantes Inscritos</label>
+        <input type="number" id="enrolledStudents" formControlName="enrolledStudents" class="form-control">
+    </div>
+    <div>
+        <label for="rating" class="form-label">Calificación</label>
+        <input type="number" id="rating" formControlName="rating" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-success">
+        @if(id=='0') {
+            Agregar Curso
+        } @else {
+            Actualizar Curso
+        }
+    </button>
+</form>

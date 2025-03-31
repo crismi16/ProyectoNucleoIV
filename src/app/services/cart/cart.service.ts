@@ -1,33 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../../types/products';
+import { Course } from '../../types/courses';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  private products: Product[] = [];
+  private courses: Course[] = [];
   private cartVisible = false;
 
   constructor() { }
 
-  addProduct(product: Product) {
-    this.products.push(product);
+  addCourse(course: Course) {
+    this.courses.push(course);
   }
 
-  removeProduct(product: Product) {
-    const index = this.products.indexOf(product);
+  removeCourse(course: Course) {
+    const index = this.courses.findIndex(c => c.id === course.id);
     if (index !== -1) {
-      this.products.splice(index, 1);
+      this.courses.splice(index, 1);
     }
   }
 
-  getTotal() {
-    return this.products.reduce((total, product) => total + product.price, 0);
+  getTotal(): number {
+    return this.courses.reduce((total, course) => total + course.price, 0);
   }
 
-  getProducts() {
-    return this.products;
+  getTotalLessons(course: Course): number {
+    return course.modules.reduce((total, module) => total + module.lessons.length, 0);
+  }
+  
+  getCourses(): Course[] {
+    return this.courses;
   }
   
   isCartVisible() {

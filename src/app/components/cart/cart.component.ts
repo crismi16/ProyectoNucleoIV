@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CartService } from '../../services/cart/cart.service';
-import { Product } from '../../types/products';
+import { Course } from '../../types/courses';
 
 @Component({
   selector: 'app-cart',
@@ -12,12 +12,12 @@ export class CartComponent {
 
   constructor(private cartService : CartService) { }
 
-  getProducts() {
-    return this.cartService.getProducts();
+  getCourses() {
+    return this.cartService.getCourses();
   }
 
-  removeProduct(product: Product) {
-    this.cartService.removeProduct(product);
+  removeCourse(course: Course) {
+    this.cartService.removeCourse(course);
   }
 
   closeCart() {
@@ -26,6 +26,10 @@ export class CartComponent {
 
   getTotal() {
     return this.cartService.getTotal();
+  }
+
+  getTotalLessons(course: Course): number {
+    return this.cartService.getTotalLessons(course);
   }
   
 }
