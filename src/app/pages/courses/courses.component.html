@@ -1,24 +1,32 @@
 <div class="container-fluid text-center">
     <h1>Cursos</h1>
-    <button type="button" class="btn btn-primary mb-3" routerLink="/course-form/0">Agregar curso</button>
+    <button type="button" class="button mb-3" routerLink="/course-form/0">Agregar curso</button>
     <div class="d-flex justify-content-center align-content-center flex-wrap gap-5">
         @for(course of courses; track $index) {
             <div class="card" style="width: 18rem;" (click)="goToCourse(course.id)">
-                <img 
-                    [src]="course.image" 
-                    class="card-img-top p-3"
-                    style="height: 200px; width: fit-content; max-width: 100%; margin-inline: auto;" 
-                    [alt]="course.title">
-                <div class="card-body">
-                    <h5 class="card-title">{{course.title}}</h5>
-                    <h6 class="card-subtitle mb-2">Nivel: {{course.level}}</h6>
-                    <p class="card-text">{{course.description}}</p>
-                    <h6 class="card-subtitle mb-2">$ {{course.price.toFixed(2)}}</h6>
-                    <button (click)="addToCart($event, course)" class="btn btn-primary">Añadir al carrito</button>
-                    @if(role == "admin"){
-                        <a [routerLink]="['/course-form', course.id]" class="btn btn-success">Actualizar</a>
-                        <a (click)="deleteCourse($event, course.id)" class="btn btn-danger">Eliminar</a>
-                    }
+                <div>
+                    <img 
+                        [src]="course.image" 
+                        class="card-img-top"
+                        style="height: 200px; width: fit-content; max-width: 100%; margin-inline: auto;" 
+                        [alt]="course.title">
+                    <div class="card-body">
+                        <h5 class="card-title">{{course.title}}</h5>
+                        <h6 class="card-subtitle mb-2">Nivel: {{course.level}}</h6>
+                        <p class="card-text">{{course.description}}</p>
+                        <h6 class="card-subtitle mb-2">$ {{course.price.toFixed(2)}}</h6>
+                    </div>
+                </div>
+                <div class="contenedor-button">
+                    <div>
+                        <button (click)="addToCart($event, course)" class="button">Añadir al carrito</button>
+                    </div>
+                    <div>
+                        @if(role == "admin"){
+                            <a [routerLink]="['/course-form', course.id]" class="btn btn-success">Actualizar</a>
+                            <a (click)="deleteCourse($event, course.id)" class="btn btn-danger">Eliminar</a>
+                        }
+                    </div>
                 </div>
             </div>
         }
