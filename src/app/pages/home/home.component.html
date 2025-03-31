@@ -3,31 +3,23 @@
         <div class="hero-content">
             <h1>Bienvenido a Nuestra Plataforma de Cursos</h1>
             <p>Descubre una amplia variedad de cursos diseñados para impulsar tu aprendizaje y desarrollo profesional.</p>
-            <button class="hero-button">Explorar Cursos</button>
+            <button routerLink="/courses" class="hero-button">Explorar Cursos</button>
         </div>
     </section>
 
     <section class="featured-courses">
         <h2>Cursos Destacados</h2>
         <div class="courses-grid">
-            <div class="course-card">
-                <img src="curso1.jpg" alt="Curso 1">
-                <h3>Desarrollo Web Full Stack</h3>
-                <p>Aprende a crear aplicaciones web completas desde cero.</p>
-                <button>Ver Detalles</button>
-            </div>
-            <div class="course-card">
-                <img src="curso2.jpg" alt="Curso 2">
-                <h3>Marketing Digital Avanzado</h3>
-                <p>Domina las estrategias de marketing digital más efectivas.</p>
-                <button>Ver Detalles</button>
-            </div>
-            <div class="course-card">
-                <img src="curso3.jpg" alt="Curso 3">
-                <h3>Inteligencia Artificial para Negocios</h3>
-                <p>Aplica la IA para optimizar y hacer crecer tu negocio.</p>
-                <button>Ver Detalles</button>
-            </div>
+            @for (course of featuredCourses; track $index) {
+                <div class="course-card card" (click)="goToCourse(course.id)">
+                    <img [src]="course.image" class="card-img-top" [alt]="course.title">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ course.title }}</h5>
+                        <p class="card-text">{{ course.description }}</p>
+                        <button (click)="goToCourse(course.id)">Ver Detalles</button>
+                    </div>
+                </div>
+            }
         </div>
     </section>
 
